@@ -32,7 +32,6 @@ export default wrap({
           await Bun.file("./private/panel.html").text(),
           {
             headers: new Headers([["Content-Type", "text/html"]]),
-            status: 401,
           },
         )
         : new Response(

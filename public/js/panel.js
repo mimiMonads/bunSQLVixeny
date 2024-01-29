@@ -51,5 +51,3 @@ function deleteItem(itemId) {
       .then(() => reload());
   }
 }
-
-

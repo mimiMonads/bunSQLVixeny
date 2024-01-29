@@ -10,7 +10,6 @@ const deleteQuery = "DELETE FROM items WHERE id = ?";
 
 const insertQuery = "INSERT INTO items (name, price) VALUES (?, ?)";
 
-
 const getUserBranch = morphism()({
   f: (c) =>
     db
@@ -27,8 +26,7 @@ const deleteByID = morphism()({
 });
 
 const addItem = morphism()({
-  f: (c) => db.run(insertQuery, c.arguments as [])
+  f: (c) => db.run(insertQuery, c.arguments as []),
 });
 
-
-export { deleteByID, getFirst10, getUserBranch, addItem };
+export { addItem, deleteByID, getFirst10, getUserBranch };
