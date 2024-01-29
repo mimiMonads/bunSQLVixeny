@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.profile-image {
+    /* Placeholder styles for profile image */
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.login-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #45a049;
+}

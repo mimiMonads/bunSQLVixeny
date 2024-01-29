@@ -1,0 +1,20 @@
+{
+  "name": "vixenysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "scripts": {
+    "run": "bun main.ts",
+    "dev": "bun --watch main.ts",
+    "test": "bun test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bun": "^1.0.4"
+  },
+  "dependencies": {
+    "vixeny": "^0.0.884"
+  }
+}
