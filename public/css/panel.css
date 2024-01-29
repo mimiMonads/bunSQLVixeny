@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.crud-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.crud-actions button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.crud-actions button:hover {
+    background-color: #777;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #555;
+}
+
+tr:nth-child(even) {
+    background-color: #444;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRUD Panel</title>
+        <link rel="stylesheet" href="/public/css/panel.css">
+    </head>
+<body>
+    <div class="crud-container">
+        <h1>Item Management</h1>
+        <div class="item-form" id="addItemForm">
+            <h2>Add Item</h2>
+            <form id="addForm" method="post" action="http://localhost:8080/api/crud/create">
+                <input name="name" type="text" id="addItemName" placeholder="Name" required>
+                <input name="price" type="number" id="addItemPrice" placeholder="Price" required>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        <table id="itemsTable">
+            
+            <tbody>
+              
+            </tbody>
+        </table>
+    </div>
+    <script src="/public/js/panel.js"></script>
+</body>
+</html>
