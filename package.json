@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "run": "bun main.ts",
+    "main": "bun main.ts",
     "dev": "bun --watch main.ts",
     "test": "bun test"
   },
@@ -15,6 +15,6 @@
     "@types/bun": "^1.0.4"
   },
   "dependencies": {
-    "vixeny": "^0.0.884"
+    "vixeny": "^0.0.885"
   }
 }

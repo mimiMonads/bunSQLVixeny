@@ -1,8 +1,15 @@
 import { wrap } from "vixeny";
 import { cryptoKey, globalOptions } from "../globalOptions.ts";
-import { getFormDataResolve } from "../resolve/api.ts";
+import { getFormDataResolve, isValidUser, validToken } from "../resolve/api.ts";
 import { getUserBranch } from "../branch/api.ts";
 import crud from "./api/crud.ts";
+
+import { Petition } from "vixeny/optimizer/types.ts";
+
+const a: Petition = {
+  path: "/ping",
+  f: () => "pong",
+};
 
 const path = globalOptions.hasName;
 
@@ -11,23 +18,17 @@ export default wrap({
   //seting name of this dir
   startWith: "/api",
 })()
+  .stdPetition(a)
   // adding /api/crud
   .union(crud.unwrap())
   .customPetition({
     path: "/panel",
     // resolve isUserResolve can be used instead
-    crypto: {
-      ...cryptoKey,
-      token: {
-        jwtToken: {},
-      },
+    resolve: {
+      isValid: validToken,
     },
     f: async (f) => {
-      const token = "jwtToken" in f.token
-        ? f.token.jwtToken as { name: string; iat: number }
-        : null;
-
-      return token && token.iat > Date.now()
+      return f.resolve.isValid !== null
         ? new Response(
           await Bun.file("./private/panel.html").text(),
           {
@@ -61,7 +62,10 @@ export default wrap({
         return new Response(
           await Bun.file("./public/html/login.html").text(),
           {
-            headers: new Headers([["Content-Type", "text/html"]]),
+            headers: new Headers([["Content-Type", "text/html"], [
+              "Set-Cookie",
+              "jwtToken=; Path=/; HttpOnly; Expires=Thu, 01 Jan 1970 00:00:00 GMT",
+            ]]),
             status: 401,
           },
         );

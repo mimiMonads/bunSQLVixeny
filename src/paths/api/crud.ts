@@ -1,7 +1,12 @@
 import { wrap } from "vixeny";
 import { cryptoKey, globalOptions } from "../../globalOptions.ts";
-import { addItem, deleteByID, getFirst10 } from "../../branch/api.ts";
-import { getFormDataResolve } from "../../resolve/api.ts";
+import {
+  addItem,
+  deleteByID,
+  getFirst10,
+  getFormDataBranch,
+} from "../../branch/api.ts";
+import { isValidUser } from "../../resolve/api.ts";
 
 const path = globalOptions.hasName;
 
@@ -40,24 +45,21 @@ export default wrap({ ...globalOptions, startWith: "/crud" })()
     path: "/create",
     method: "POST",
     resolve: {
-      formData: getFormDataResolve,
+      isValid: isValidUser,
     },
     branch: {
       createNew: addItem,
     },
-    crypto: { ...cryptoKey, token: { jwtToken: {} } },
     f: (c) => {
-      const user = c.resolve.formData.get("name") ?? null,
-        price = c.resolve.formData.get("price") ?? null;
-
       if (
-        c.token.jwtToken === null ||
-        (c.token.jwtToken as ({ iat: number })).iat < Date.now()
+        c.resolve.isValid === null
       ) {
         return new Response(null, {
           status: 401,
         });
       }
+      const user = c.resolve.isValid.get("name") ?? null,
+        price = c.resolve.isValid.get("price") ?? null;
 
       if (user === null || price === null) {
         return new Response(null, {
